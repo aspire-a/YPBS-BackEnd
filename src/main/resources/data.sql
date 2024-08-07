@@ -130,7 +130,7 @@ CREATE TABLE AUTHORITY (
                            id BIGINT AUTO_INCREMENT PRIMARY KEY,
                            authority VARCHAR(255) NOT NULL,
                            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 );
 
 
@@ -307,13 +307,28 @@ VALUES
 
 
 INSERT INTO ORGANIZATION (top_org_id, name) VALUES
-                                                (NULL, 'TUBITAK'),  -- Root organization
-                                                (1, 'BİLGEM'),       -- Sub-organization of GlobalCorp
-                                                (1, 'SAGE'),     -- Sub-organization of GlobalCorp
-                                                (2, 'ILTAREN'),  -- Sub-organization of TechCorp
-                                                (2, 'YTE');  -- Sub-organization of TechCorp
+                                                (NULL, 'Bilgem YK'),
+                                                (1, 'Bilgem Başkanı'),
+                                                (2, 'Enstitü Müdürü'),
+                                                (3, 'PYO'),
+                                                (3, 'İş Geliştirme ve Sözleşme Birimi'),
+                                                (3, 'Tesis Yönetimi'),
+                                                (3, 'Ürünleştirme ve Ürün Yönetimi'),
+                                                (3, 'Enstitü Kurulu'),
+                                                (3, 'Kurumsal Kaynak Yönetimi'),
+                                                (3, 'Kalite ve Strateji Yönetimi'),
+                                                (3, 'Teknoloji Birlikleri Koordinasyonu'),
+                                                (3, 'Yazılım Geliştirme Teknolojileri EMY'),
+                                                (3, 'Dijital Dönüşüm Çözümleri EMY'),
+                                                (9, 'Satın Alma'),
+                                                (9, 'İnsan Kaynakları'),
+                                                (9, 'Eğitim ve Organizasyon'),
+                                                (12, 'Proje Yönetimi'),
+                                                (12, 'Dijital Strateji ve Dönüşüm Planlama'),
+                                                (12, 'Bilgi Birimi'),
+                                                (12, 'Gereksinim Mühendisliği ve Kullanıcı Deneyimi');
 
--- Populate KURUMSAL table
+
 INSERT INTO KURUMSAL (user_id, org_id, iseGirisTarihi, sicilNo, kadro, unvan, gorev, persolenTuru, calismaTuru, calismaDurumu, servisKullanimi, dahiliNumara, odaNumara) VALUES
              (1, 1, '2021-05-01', 12345, 'Engineering', 'Senior Developer', 'Lead Developer', 'YONETICI', 'TAM_ZAMANLI', 'AKTIF', TRUE, '1001', 101),
              (2, 2, '2022-03-15', 67890, 'Medical', 'Nurse', 'Staff Nurse', 'CALISAN', 'YARI_ZAMANLI', 'AKTIF', TRUE, '2002', 202),
@@ -321,7 +336,7 @@ INSERT INTO KURUMSAL (user_id, org_id, iseGirisTarihi, sicilNo, kadro, unvan, go
              (4, 4, '2019-11-25', 98765, 'Finance', 'Analyst', 'Financial Analyst', 'CALISAN', 'SERBEST', 'IZINLI', TRUE, '4004', 404),
              (5, 5, '2023-02-10', 13579, 'Energy', 'Technician', 'Junior Technician', 'STAJYER', 'TAM_ZAMANLI', 'AKTIF', FALSE, '5005', 505);
 
--- Populate PROJE table
+
 INSERT INTO PROJE (projeAdi, takim, baslangicTarihi, bitisTarihi) VALUES
                                                                       ('AI Research', 'AI Team', '2023-01-01', '2023-12-31'),
                                                                       ('Web Development', 'Web Team', '2023-02-01', '2023-11-30'),
@@ -329,7 +344,7 @@ INSERT INTO PROJE (projeAdi, takim, baslangicTarihi, bitisTarihi) VALUES
                                                                       ('Data Analysis', 'Data Team', '2023-04-01', '2023-09-30'),
                                                                       ('Cybersecurity', 'Security Team', '2023-05-01', '2023-08-31');
 
--- Populate GOREV table
+
 INSERT INTO GOREV (user_id, proje_id, gorev) VALUES
                                                  (1, 1, 'Project Manager'),
                                                  (2, 2, 'Lead Developer'),
@@ -341,9 +356,7 @@ INSERT INTO GOREV (user_id, proje_id, gorev) VALUES
                                                  (2, 4, 'Assistant'),
                                                  (4, 1, 'Data Scientist'),
                                                  (5, 3, 'Support Staff');
--- Populate ORGANIZATION table with hierarchical structure
 
--- Populate KURUMSAL_PROJE table with example entries
 INSERT INTO KURUMSAL_PROJE (kurumsal_id, proje_id) VALUES
                                                        (1, 1),
                                                        (1, 2),
@@ -355,3 +368,6 @@ INSERT INTO KURUMSAL_PROJE (kurumsal_id, proje_id) VALUES
                                                        (4, 3),
                                                        (5, 4),
                                                        (5, 5);
+
+
+
