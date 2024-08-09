@@ -11,6 +11,7 @@ import yte.ypbs.ypbs_2024_ge3.user.enums.CalismaTuru;
 import yte.ypbs.ypbs_2024_ge3.user.enums.PersonelTuru;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Setter
@@ -29,8 +30,8 @@ public class Kurumsal extends BaseEntity {
     @ManyToOne
     private Organization birim;
 
-    private String proje;
-    private String gorev;
+    @OneToMany(mappedBy = "kurumsal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<KurumsalProje> kurumsalProjeler;
 
     @Enumerated(EnumType.STRING)
     private PersonelTuru personelTuru;
@@ -40,12 +41,10 @@ public class Kurumsal extends BaseEntity {
     private String dahiliNumara;
     private Integer odaNumara;
 
-    public Kurumsal(User user, LocalDate iseGirisTarihi, long sicilNo, String kadro, String unvan, Organization birim) {
+    public Kurumsal(User user, String unvan, Organization birim, List<KurumsalProje> kurumsalProjeler) {
         this.user = user;
-        this.iseGirisTarihi = iseGirisTarihi;
-        this.sicilNo = sicilNo;
-        this.kadro = kadro;
         this.unvan = unvan;
         this.birim = birim;
+        this.kurumsalProjeler = kurumsalProjeler;
     }
 }
