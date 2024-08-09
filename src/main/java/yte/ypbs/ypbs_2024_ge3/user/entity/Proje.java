@@ -10,6 +10,7 @@ import lombok.Setter;
 import yte.ypbs.ypbs_2024_ge3.common.entity.BaseEntity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -31,4 +32,5 @@ public class Proje extends BaseEntity {
         this.projeAdi = projeAdi;
         this.takim = takim;
     }
+
 }

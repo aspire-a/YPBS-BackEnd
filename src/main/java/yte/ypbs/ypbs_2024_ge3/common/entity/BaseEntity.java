@@ -56,4 +56,6 @@ public abstract class BaseEntity {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
 }

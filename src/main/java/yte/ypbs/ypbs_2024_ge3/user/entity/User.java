@@ -1,6 +1,7 @@
 package yte.ypbs.ypbs_2024_ge3.user.entity;
 
 
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
