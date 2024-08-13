@@ -1,5 +1,8 @@
 package yte.ypbs.ypbs_2024_ge3.user.controller;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,13 +30,16 @@ public class UserController {
 
 
     @GetMapping("/findUsersWithFilters")
-    public List<UserDataResponse> findUsersWithFilters(String nameSurname,
-                                                          String unvan,
-                                                          String gorev,
-                                                          String birim,
-                                                          String proje,
-                                                          String takim) {
-        return userService.findUsersWithFilters(nameSurname, unvan, gorev, birim, proje, takim);
+    public Page<UserDataResponse> findUsersWithFilters(@RequestParam String nameSurname,
+                                                       @RequestParam String unvan,
+                                                       @RequestParam String gorev,
+                                                       @RequestParam String birim,
+                                                       @RequestParam String proje,
+                                                       @RequestParam String takim,
+                                                       @RequestParam int page,
+                                                       @RequestParam int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return userService.findUsersWithFilters(nameSurname, unvan, gorev, birim, proje, takim, pageable);
     }
 
 

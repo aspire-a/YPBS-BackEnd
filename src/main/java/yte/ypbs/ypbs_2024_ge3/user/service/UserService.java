@@ -1,5 +1,7 @@
 package yte.ypbs.ypbs_2024_ge3.user.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -9,11 +11,6 @@ import yte.ypbs.ypbs_2024_ge3.user.entity.User;
 import yte.ypbs.ypbs_2024_ge3.user.repository.UserRepository;
 import yte.ypbs.ypbs_2024_ge3.user.controller.response.UserHeaderResponse;
 import yte.ypbs.ypbs_2024_ge3.user.controller.response.UserDataResponse;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -32,16 +29,15 @@ public class UserService {
     }
 
 
-    public List<UserDataResponse> findUsersWithFilters(String nameSurname,
+    public Page<UserDataResponse> findUsersWithFilters(String nameSurname,
                                                        String unvan,
                                                        String gorev,
                                                        String birim,
                                                        String proje,
-                                                       String takim) {
-        List<User> result = userRepository.findUsersWithFilters(nameSurname, birim, unvan, gorev, proje, takim);
-        return result.stream()
-                .map(User::toUserDataResponse)
-                .collect(Collectors.toList());
+                                                       String takim,
+                                                       Pageable pageable) {
+        Page<User> result = userRepository.findUsersWithFilters(nameSurname, birim, unvan, gorev, proje, takim, pageable);
+        return result.map(User::toUserDataResponse);
     }
 
 
