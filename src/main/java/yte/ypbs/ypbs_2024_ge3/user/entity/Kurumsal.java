@@ -38,7 +38,11 @@ public class Kurumsal extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private PersonelTuru personelTuru;
+
+    @Enumerated(EnumType.STRING)
     private CalismaTuru calismaTuru;
+
+    @Enumerated(EnumType.STRING)
     private CalismaDurumu calismaDurumu;
     private boolean servisKullanimi;
     private String dahiliNumara;

@@ -17,6 +17,8 @@ public class Deneyim extends BaseEntity {
 
     private String kurumAdi;
     private String pozisyon;
+
+    @Enumerated(EnumType.STRING)
     private CalismaSekli calismaSekli;
     private LocalDate baslamaTarihi;
     @Column(nullable = true)
